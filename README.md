@@ -11,8 +11,7 @@ This program simulates the behavior of different CPU scheduling algorithms in op
 6. [Performance Metrics](#performance-metrics)
 7. [Visualization](#visualization)
 8. [Testing](#testing)
-9. [Contributing](#contributing)
-10. [License](#license)
+
 
 ## Introduction
 This program is developed as an assignment to deepen understanding of CPU scheduling algorithms and their impact on system performance in operating systems. It implements various scheduling algorithms and provides a user-friendly interface for simulation and analysis.
@@ -29,7 +28,7 @@ This program is developed as an assignment to deepen understanding of CPU schedu
 To run the program, ensure you have Java Development Kit (JDK) installed on your system.
 
 1. Clone the repository:
-   
+   https://github.com/OUM124/CPU-Scheduler-Simulation.git
 2. Compile the Java files:
 javac *.java
 
