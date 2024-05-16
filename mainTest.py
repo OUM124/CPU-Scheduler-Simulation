@@ -2,7 +2,7 @@
 import glob
 import time
 import sys
-sys.path.append("scheduling_algorithms") # menambahkan scheduling_algorithms directory ke path
+sys.path.append("scheduling_algorithms")
 
 # import model
 
@@ -26,6 +26,7 @@ def run_all_processes(processes):
     fcfs = FCFS(processes) # Reset processes before running the algorithm
     run_scheduler(fcfs, processes)
     processes_dict["FCFS"] = fcfs.completed_processes
+    
 
     sjf = SJF(processes)
     reset_processes(processes)  # Reset processes before running the algorithm
@@ -42,10 +43,7 @@ def run_all_processes(processes):
     run_scheduler(rr, processes)
     processes_dict["RR"] = rr.completed_processes
 
-    priority_rr = PriorityRoundRobin(processes, quantum)
-    reset_processes(processes)  # Reset processes before running the algorithm
-    priority_rr.run()
-    processes_dict["Priority_RR"] = priority_rr.completed_processes
+    print(processes_dict)
 
     return processes_dict
 
@@ -61,15 +59,12 @@ def run_scheduler(scheduler, work_queue):
         current_job, cpu_busy = scheduler.nextStep(simulationTime)
         
         if current_job:
-            scheduler.delay +=1
             print(f"Processing Job {current_job.jobNumber} at time {simulationTime}")
-            #print("Current remaining time : ",current_job.getRemainTime())
        
         elif current_job is None and  not work_queue.isEmpty() : 
             scheduler.delay +=1
             print("No job is being processed at time", simulationTime)
-            #print("Count is ************************ ",count) # ila dkhl hna ya3ni none athsb , khasha tkoun inf mn number of processes
-        # the current job is none but the queue still have some elemen inside   
+        # the current job is none but the queue still have some elements inside   
         simulationTime += 1
         
         if not cpu_busy:
@@ -92,10 +87,9 @@ def printInfo(processes, ganttChart=None):
 # MAIN PROGRAM 
 # ========================
 
-# read data file .txt dalam direktori TestCase
+# read data file .txt 
 txt_files = glob.glob("test-case/*.txt")
 
-# simpan nama algoritma penjadwalan
 schedulingAlgorithms = ["FCFS (First Come First Served)",
                         "SJF (Shortest Job First)",
                         "Priority Scheduling (Non-Preemptive)",
@@ -110,7 +104,7 @@ print('-' * 35 + " Simulation Scheduling Algorithm " + '-' * 35, end="\n\n")
 # SIMULATION
 while True:
     
-    print("Select input proses:")
+    print("Select input type:")
     print("1. Manual")
     print("2. Import test case")
     print("3. Generate Randomly")
@@ -123,7 +117,7 @@ while True:
     processes = Queue()
     if choice == 1:
         # manual input
-        n = int(input("Enter how many process: "))
+        n = int(input("Enter how many processes: "))
         for i in range(n):
             arrive_time = int(input("Enter Arrive Time: "))
             burst_time = int(input("Enter Burst Time: "))
@@ -154,7 +148,7 @@ while True:
                     pass
 
             
-            n = processes.size()  # jumlah data
+            n = processes.size()  
 
         except FileNotFoundError:
             print("File not found. Please make sure the filename and path are correct.")
@@ -181,7 +175,7 @@ while True:
             print("Scheduling Algorithms:")
             for i, algorithm in enumerate(schedulingAlgorithms):
                 print(f"{i+1}. {algorithm}")
-            print("7. Compare all processes")    
+            #print("7. Compare all Scheduling Algorithms")    
             print("0. Exit")
             print('=' * 30)
             print("Enter number:")
@@ -207,14 +201,12 @@ while True:
             # Process
             # ===================================================
 
-            # delay biar statisfying
             if choice != 0 and choice < 7:
                 for i in range(4):
                     print('.' * (i+1))
                     time.sleep(0.2)
                 print()
             
-            # kondisi sesuai pilihan
             if choice == 1:
                 # process FCFS (First Come First Served) algorithm
                 fcfs = FCFS(processes)
@@ -310,7 +302,7 @@ while True:
 
 # Input
 # -----------
-# test case secara hardcode
+# test case 
 """
 processes = [
     Process("P0", 5, 3, 2),

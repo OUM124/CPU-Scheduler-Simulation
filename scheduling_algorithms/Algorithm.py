@@ -59,7 +59,8 @@ class Algorithm:
         return self.gantt_chart
     
     def checkDelay(self):
-        if self.delay:
+        if self.delay: 
             self.gantt_chart.append(['##', self.delay]) 
             self.delay = 0
+       
     

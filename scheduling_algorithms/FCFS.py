@@ -34,8 +34,8 @@ class FCFS(Algorithm):
         
         self.updatePlot()  # Update the plot
         plt.pause(0.5)  # Pause to slow down the execution speed
-        if self.isFinished() and self.currentJob is None and self.readyQueue.isEmpty():
-            self.completed_processes.append(self.currentJob)
+        if self.isFinished():
+            self.completed_processes.append(self.currentJob) 
         return current_job, busy
     
     
